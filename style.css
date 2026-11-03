@@ -161,9 +161,11 @@ nav a{
 .section-subtitle{
     margin-top: 0;
     font-size: 1em;
+    color: #151B55;
 }
 
 .section-description{
+    color: #151B55;
     margin-left: 0;
     font-size: 0.9em;
     transform: translateX(2px);
@@ -173,7 +175,8 @@ nav a{
     margin-left: 0;
     font-size: 0.8em;
     background-color: transparent;
-    border: 1px solid #333;
+    border: 1px solid #151B55;
+    color: #151B55;
     border-radius: 21px;
     padding: 0.5em 1.5em;
     cursor: pointer;
@@ -181,7 +184,7 @@ nav a{
 
 .profile-section{
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: space-between;
     gap: 40px;
     margin: 60px 5%;
@@ -211,11 +214,53 @@ nav a{
     margin-bottom: 0;
 }
 
-.skills-icon{
+.skill-list{
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    margin-top: 15px;
+}
+
+.skill-item{
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: -15px;
+    gap: 12px;
+}
+
+.skill-item i{
+    width: 12%;
+    font-size: 22px;
+    color: #151B55;
+    text-align: center;
+}
+
+.skill-name{
+    width: 78px;
+    flex-shrink: 0;
+    font-size: 13px;
+    color: #151B55;
+}
+
+.skill-bar{
+    flex: 1;
+    height: 7px;
+    background-color: #E5E3ED;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-level{
+    height: 100%;
+    background-color: #8052D6;
+    border-radius: 10px;
+}
+
+.skill-percent{
+    width: 30px;
+    flex-shrink: 0;
+    font-size: 13px;
+    color: #151B55;
+    text-align: right;
 }
 
 .works{
