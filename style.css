@@ -1,5 +1,5 @@
 body{
-    font-family: sans-serif;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
     font-size: 16px;
     color: #333;
     margin: 0;
@@ -11,6 +11,8 @@ body{
     align-items: center;
     padding-left: 5%;
     padding-right: 5%;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .logo{
@@ -30,6 +32,7 @@ body{
     font-size: 32px;
     font-weight: 600;
     letter-spacing: 0.05em;
+    color: #7156B2;
 }
 
 #header-inner{
@@ -48,7 +51,7 @@ nav a{
     text-decoration: none;
 }
 
-#button-inquire{
+#button-contact{
     background-color: #7156B2;
     color: #fff;
     border-radius: 18px;
@@ -59,18 +62,162 @@ nav a{
     position: relative;
 }
 
+.hero::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+    pointer-events: none;
+}
+
 .hero img{
     width: 100%;
-    height: 320px;
+    height: 400px;
     object-fit: cover;
+    object-position: center 64%;
 }
 
 .hero-inner{
     position: absolute;
-    top: 25%;
-    left: 8%;
+    top: 16%;
+    left: 6%;
+    color: #fff;
+    font-size: 24px;
+    z-index: 10;
 }
 
-.about-me {
+.hero-inner p{
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.hero-label{
+    font-size: 0.45em;
+    letter-spacing: 0.3em;
+}
+
+.hero-inner h1{
+    font-size: 2em;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.text-accent{
+    color: #AA97D7;
+}
+
+.hero-description{
+    font-size: 0.65em;
+}
+
+.button-about {
+    font-family: inherit;
+    font-size: 0.6em;
     background-color: transparent;
+    border-radius: 22px;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 0.5em 1.5em;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.about,.skills,.works{
+    margin-left: 0;
+}
+
+.section-title-wrapper{
+    position: relative;
+    padding-left: 60px;
+}
+
+.section-title-wrapper::before{
+    content: "";
+    position: absolute;
+    left: 0%;
+    top: 1.2rem;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 2px;
+    background-color: #8B5CF6;
+}
+
+.section-content{
+    margin-left: 1em;
+}
+
+.section-title{
+    font-size: 2em;
+    color: #151B55;
+    margin: 0;
+    font-weight: 600;
+}
+
+.section-subtitle{
+    margin-top: 0;
+    font-size: 1em;
+}
+
+.section-description{
+    margin-left: 0;
+    font-size: 0.9em;
+    transform: translateX(2px);
+}
+
+.button-more{
+    margin-left: 0;
+    font-size: 0.8em;
+    background-color: transparent;
+    border: 1px solid #333;
+    border-radius: 21px;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+}
+
+.profile-section{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 60px 5%;
+}
+
+.about{
+    flex: 0.8;
+}
+
+.profile-image{
+    flex: 0.8;
+}
+
+.img-about{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.skills{
+    flex: 1.2;
+}
+
+#skills-subtitle{
+    margin-bottom: 0;
+}
+
+.skills-icon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: -15px;
+}
+
+.works{
+    margin-left: 5%;
 }
