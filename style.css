@@ -9,10 +9,12 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 8px 5%;
+    margin: 0;
 }
 
 .logo{
@@ -47,15 +49,54 @@ nav{
 }
 
 nav a{
+    position: relative;
     color: #333;
     text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav a:hover,
+nav a.active{
+    color: #8052D6;
+}
+
+nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 2px;
+    background-color: #8052D6;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+nav a:hover::after,
+nav a.active::after{
+    transform: scaleX(1);
+}
+
+nav:hover a.active:not(:hover)::after{
+    transform: scaleX(0);
+}
+
+nav:hover a.active:not(:hover){
+    color: #333;
 }
 
 #button-contact{
     background-color: #7156B2;
     color: #fff;
+    border: none;
     border-radius: 18px;
     padding: 6px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#button-contact:hover{
+    background-color: #927BC7;
 }
 
 .hero{
@@ -74,6 +115,7 @@ nav a{
 }
 
 .hero img{
+    display: block;
     width: 100%;
     height: 400px;
     object-fit: cover;
@@ -124,7 +166,14 @@ nav a{
     color: #fff;
     padding: 0.5em 1.5em;
     margin-top: 12px;
+    transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
+}
+
+.button-about:hover{
+    background-color: #927BC7;
+    border-color: #927BC7;
+    color: #fff;
 }
 
 .about,.skills,.works{
@@ -136,7 +185,7 @@ nav a{
     padding-left: 60px;
 }
 
-.section-title-wrapper::before{
+.title-accent::before{
     content: "";
     position: absolute;
     left: 0%;
@@ -172,6 +221,7 @@ nav a{
 }
 
 .button-more{
+    transition: background-color 0.3s, color 0.3s;
     margin-left: 0;
     font-size: 0.8em;
     background-color: transparent;
@@ -181,21 +231,31 @@ nav a{
     padding: 0.5em 1.5em;
     cursor: pointer;
 }
+.button-more:hover{
+    background-color: #151B55;
+    color: #fff;
+}
 
 .profile-section{
     display: flex;
     align-items: stretch;
     justify-content: space-between;
-    gap: 40px;
-    margin: 60px 5%;
+    gap: 0;
+    margin: 30px 5%;
 }
 
 .about{
     flex: 0.8;
 }
 
+.about-text{
+    margin-left: 60px;
+}
+
 .profile-image{
-    flex: 0.8;
+    flex: 0.7;
+    margin-left: 0;
+    margin-right: 80px;
 }
 
 .img-about{
@@ -207,7 +267,11 @@ nav a{
 }
 
 .skills{
-    flex: 1.2;
+    flex: 0.84;
+}
+
+.skill-wrapper{
+    margin-left: -55px;
 }
 
 #skills-subtitle{
@@ -265,4 +329,130 @@ nav a{
 
 .works{
     margin-left: 5%;
+}
+
+.works-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 5%;
+}
+
+.button-all-works{
+    display: inline-block;
+    text-decoration: none;
+    color: #151B55;
+    border: 1px solid #8B5CF6;
+    border-radius: 22px;
+    padding: 0.6em 1.5em;
+    font-size: 0.8em;
+}
+
+.button-all-works:hover{
+    background-color: #7156B2;
+    color: #fff;
+}
+
+.work-card{
+    border: 1px solid #E8E5F0;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-left: 10%;
+    margin-right: 10%;
+    cursor: pointer;
+}
+
+.work-card img{
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center 88%;
+}
+
+.work-info{
+    color: #151B55;
+    padding: 12px 14px;
+}
+
+.work-title{
+    font-size: 1em;
+    margin: 0 0 8px;
+}
+
+.work-description{
+    font-size: 0.85em;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.contact{
+    position: relative;
+    margin: 30px 2%;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 220px;
+}
+
+.contact-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.contact-content{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 8%;
+    min-height: 170px;
+
+}
+
+.contact-info{
+    flex: 1;
+}
+
+.contact-info .section-title,
+.contact-info .section-subtitle,
+.contact-info .section-description{
+    color: #fff;
+}
+
+.contact-text{
+    margin-left: 60px;
+}
+
+.form-row{
+    display: flex;
+    gap: 10px;
+}
+
+.form-group{
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.form-group label{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-group input,
+.form-group textarea{
+    box-sizing: border-box;
 }
