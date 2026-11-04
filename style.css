@@ -432,6 +432,18 @@ nav:hover a.active:not(:hover){
     margin-left: 60px;
 }
 
+.contact-form{
+    margin-right: 100px;
+    width: 50%;
+}
+
+.form-group textarea{
+    height: 65px;
+    min-height: 65px;
+    resize: vertical;
+    overflow: auto;
+}
+
 .form-row{
     display: flex;
     gap: 10px;
@@ -512,6 +524,10 @@ nav:hover a.active:not(:hover){
     margin: 0 5%;
 }
 
+.footer-nav{
+    margin-right: 37%;
+}
+
 .footer-nav ul{
     display: flex;
     align-items: center;
@@ -526,9 +542,14 @@ nav:hover a.active:not(:hover){
     text-decoration: none;
 }
 
+.footer-sns{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .footer-sns a{
-    color: #333;
-    font-size: 22px;
+    font-size: 32px;
     text-decoration: none;
 }
 
@@ -536,5 +557,5 @@ nav:hover a.active:not(:hover){
     text-align: center;
     font-size: 12px;
     color-interpolation-filters: #777;
-    margin: 20px 0 0;
+    margin: 15px 0 0;
 }
