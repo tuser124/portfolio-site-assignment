@@ -130,6 +130,19 @@ nav:hover a.active:not(:hover){
     color: #fff;
     font-size: 24px;
     z-index: 10;
+    animation: fadeUp 1s ease-out both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-inner p{
