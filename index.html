@@ -9,12 +9,12 @@
         <script src="js/script.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet"href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     </head>
     <body>
         <header class="header">
-        <a href="#" class="logo">
+        <a href="#home" class="logo">
             <span class="logo-mark">R</span>
             <span class="logo-name">Reina Sato</span>
         </a>
@@ -26,7 +26,7 @@
                 <a href="#works">Works</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <button id="button-contact">お問い合わせ →</button>
+            <a href="#contact" id="button-contact">お問い合わせ →</a>
         </div>
         </header>
         <section id="home" class="hero">
@@ -35,7 +35,7 @@
                 <p class="hero-label">WEB DEVELOPER </p>
             <h1>好きでつくる、<br><span class="text-accent">つながる</span>未来。</h1>
             <p class="hero-description">コードで、だれかの「やりたい」を叶える<br>Webエンジニアを目指しています。</p>
-            <button class="button-about">私について見る　→</button>
+            <a href="#about" class="button-about">私について見る　→</a>
             </div>
         </section>
         <section class="profile-section">
@@ -51,8 +51,11 @@
                 心に残るデザインを作りたいと思っています。
             </p>
             
+            <!--
             <button class="button-more">詳しく見る　→</button>
-            </div>
+            -->
+            
+        </div>
         </section>
         <div class="profile-image">
             <img class="img-about" src="img/about.png" alt="植物と机の画像">
@@ -181,5 +184,43 @@
         </div>
     </div>
 </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+
+        <div class="footer-logo">
+            <a href="#home" class="logo">
+                <span class="logo-mark">R</span>
+                <span class="logo-name">Reina Sato</span>
+            </a>
+        </div>
+
+        
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-sns">
+                <a href="https://github.com/komagoma123"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="devicon-github-original colored"></i>
+                </a>
+            </div>
+        </div>
+
+            <p class="copy-right">
+                © 2026 Reina Sato. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+
     </body>
     </html>

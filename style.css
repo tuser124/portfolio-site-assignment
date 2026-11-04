@@ -93,6 +93,7 @@ nav:hover a.active:not(:hover){
     padding: 6px 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
 #button-contact:hover{
@@ -168,6 +169,7 @@ nav:hover a.active:not(:hover){
     margin-top: 12px;
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .button-about:hover{
@@ -455,4 +457,84 @@ nav:hover a.active:not(:hover){
 .form-group input,
 .form-group textarea{
     box-sizing: border-box;
+    width: 100%;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #fff;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color: #AA97D7;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+    color: rgba(255,255,255,0.8);
+}
+
+.form-group textarea{
+    height: 65px;
+    resize: vertical;
+}
+
+.button-submit{
+    display: block;
+    width: 140px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #fff;
+    background-color: #8052D6;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-submit:hover{
+    background-color: #927BC7;
+}
+
+.footer{
+    padding: 25px 0 15px;
+}
+
+.footer-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 5%;
+}
+
+.footer-nav ul{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav a{
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-sns a{
+    color: #333;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.copy-right{
+    text-align: center;
+    font-size: 12px;
+    color-interpolation-filters: #777;
+    margin: 20px 0 0;
 }

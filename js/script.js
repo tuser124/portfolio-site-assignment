@@ -1,76 +1,98 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ナビゲーションのリンクを取得
-    const navLinks = document.querySelectorAll('nav a[href^="#"]'); 
+    // ヘッダーのナビゲーションリンクを取得
+    const navLinks = document.querySelectorAll(
+        '.header nav a[href^="#"]'
+    );
 
-    // 各リンクに対応するセクションを取得
-    const sections = Array.from(navLinks)
-        .map(link => document.querySelector(link.getAttribute('href')))
-        .filter(section => section !== null);
-
-    // AboutとSkillsを含む親要素を取得
+    // 各セクションを取得
     const profileSection = document.querySelector('.profile-section');
+    const worksSection = document.querySelector('#works');
+    const contactSection = document.querySelector('#contact');
 
-    // スクロール位置に応じてactiveを切り替える関数
-    function updateActiveLink() {
+    // activeを付けるリンクを指定する関数
+    function setActiveLinks(ids) {
 
-        const currentPosition =
-            window.scrollY + window.innerHeight * 0.35;
-
-        // すべてのリンクからactiveを外す
+        // すべてのactiveを外す
         navLinks.forEach(link => {
             link.classList.remove('active');
         });
 
-        // AboutとSkillsの範囲内か判定
+        // 指定されたリンクにactiveを付ける
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+
+            if (ids.includes(href)) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // スクロール位置に応じてactiveを切り替える関数
+    function updateActiveLink() {
+
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+
+        // 画面の上から35%の位置を判定基準にする
+        const currentPosition =
+            scrollPosition + windowHeight * 0.35;
+
+        // 各セクションのページ上部からの位置を取得
         const profileTop =
-            profileSection.getBoundingClientRect().top + window.scrollY;
+            profileSection.getBoundingClientRect().top + scrollPosition;
 
-        const profileBottom =
-            profileTop + profileSection.offsetHeight;
+        const worksTop =
+            worksSection.getBoundingClientRect().top + scrollPosition;
 
+        const contactTop =
+            contactSection.getBoundingClientRect().top + scrollPosition;
+
+        // ページの最下部に到達したか判定
+        const isBottom =
+            window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 2;
+
+        // ① ページ最下部：WorksとContactを同時にactive
+        if (isBottom) {
+            setActiveLinks(['#works', '#contact']);
+            return;
+        }
+
+        // ② AboutとSkillsの範囲：両方をactive
         if (
             currentPosition >= profileTop &&
-            currentPosition < profileBottom
+            currentPosition < worksTop
         ) {
-            // AboutとSkillsの両方をactiveにする
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
+            setActiveLinks(['#about', '#skills']);
+            return;
+        }
 
-                if (href === '#about' || href === '#skills') {
-                    link.classList.add('active');
-                }
-            });
+        // ③ Worksの範囲
+        if (
+            currentPosition >= worksTop &&
+            currentPosition < contactTop
+        ) {
+
+            // Contactが画面内に入ってきたら両方をactive
+            if (contactTop <= scrollPosition + windowHeight) {
+                setActiveLinks(['#works', '#contact']);
+            } else {
+                setActiveLinks(['#works']);
+            }
 
             return;
         }
 
-        // 通常のセクションのactive判定
-        let currentSection = sections[0];
+        // ④ Contactの範囲
+        if (currentPosition >= contactTop) {
+            setActiveLinks(['#contact']);
+            return;
+        }
 
-        sections.forEach(section => {
-            // AboutとSkillsは上でまとめて判定したので除外
-            if (
-                section.id === 'about' ||
-                section.id === 'skills'
-            ) {
-                return;
-            }
-
-            const sectionTop =
-                section.getBoundingClientRect().top + window.scrollY;
-
-            if (sectionTop <= currentPosition) {
-                currentSection = section;
-            }
-        });
-
-        // 該当するリンクにactiveをつける
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === `#${currentSection.id}`) {
-                link.classList.add('active');
-            }
-        });
+        // ⑤ それ以外はHomeをactive
+        setActiveLinks(['#home']);
     }
 
     // スクロール時に実行
@@ -79,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 画面サイズ変更時にも実行
     window.addEventListener('resize', updateActiveLink);
 
-    // 最初の表示時にも実行
+    // ページを開いたときにも実行
     updateActiveLink();
 
 });
