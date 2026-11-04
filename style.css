@@ -502,10 +502,7 @@ nav:hover a.active:not(:hover){
     color: rgba(255,255,255,0.8);
 }
 
-.form-group textarea{
-    height: 65px;
-    resize: vertical;
-}
+
 
 .button-submit{
     display: block;
@@ -569,6 +566,6 @@ nav:hover a.active:not(:hover){
 .copy-right{
     text-align: center;
     font-size: 12px;
-    color-interpolation-filters: #777;
+    color: #777;
     margin: 15px 0 0;
 }
