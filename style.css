@@ -585,9 +585,9 @@ nav:hover a.active:not(:hover){
 }
 
 .footer-nav{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    transform: none;
+    margin-left: auto;
 }
 
 .footer-nav ul{
@@ -905,8 +905,8 @@ nav:hover a.active:not(:hover){
 .footer-inner {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     gap: 10px;
-    margin: 0 5%;
 }
 
 .footer-logo{
@@ -915,21 +915,24 @@ nav:hover a.active:not(:hover){
 
 .footer-nav {
     width: auto;
-    margin-right: 0;
+    margin-left: auto;
 }
 
 .footer-nav ul {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: flex-end;
     gap: 12px;
-}
-
-.footer-nav a{
     font-size: 12px;
-    white-space: nowrap;
 }
 
+.logo{
+    font-size: 14px;
+}
+
+.footer-mark{
+    font-size: 22px;
+}
 
 }
 
@@ -975,10 +978,6 @@ nav:hover a.active:not(:hover){
 }
 
 @media (min-width: 769px) and (max-width: 809px) {
-
-    .footer-nav {
-        margin-right: 0;
-    }
 
     .footer-logo {
         flex-shrink: 0;
