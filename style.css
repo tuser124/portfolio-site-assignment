@@ -766,6 +766,10 @@ nav:hover a.active:not(:hover){
             visibility: visible;
         }
 
+        .hero-inner{
+            font-size: 20px;
+        }
+
         .profile-layout {
         display: flex;
         flex-direction: column;
