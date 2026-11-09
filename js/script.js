@@ -1,130 +1,86 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    const navLinks = document.querySelectorAll(
-        '.header nav a[href^="#"]'
+// PC版ナビゲーション
+const pcNavLinks = document.querySelectorAll(
+    '.header #header-inner nav a[href^="#"]'
+);
+
+// activeを解除するタイマー
+let activeTimer;
+
+// クリックしたときだけ一時的にactiveにする
+pcNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+
+        // 前回のタイマーを解除
+        clearTimeout(activeTimer);
+
+        // すべてのactiveを外す
+        pcNavLinks.forEach(navLink => {
+            navLink.classList.remove('active');
+        });
+
+        // クリックしたナビにactiveを付ける
+        link.classList.add('active');
+
+        // 0.25秒後にactiveを解除
+        activeTimer = setTimeout(() => {
+            link.classList.remove('active');
+        }, 250);
+
+    });
+});
+
+    // ハンバーガーメニュー
+const hamburger = document.querySelector('.hamburger-menu');
+const wrapper = document.querySelector('.wrapper-hamburger');
+const closeButton = document.querySelector('.close-btn');
+const overlay = document.querySelector('.overlay');
+const menuLinks = document.querySelectorAll('.sp-menu a');
+
+// メニューを開く・閉じる共通関数
+function toggleMenu(isOpen) {
+    wrapper.classList.toggle('is-open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute(
+        'aria-label',
+        isOpen ? 'メニューを閉じる' : 'メニューを開く'
     );
 
-    const profileSection = document.querySelector('.profile-layout');
-    const worksSection = document.querySelector('#works');
-    const contactSection = document.querySelector('#contact');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+}
 
-    function setActiveLinks(ids) {
+// ハンバーガーをタップ
+hamburger.addEventListener('click', () => {
+    const isOpen = wrapper.classList.contains('is-open');
+    toggleMenu(!isOpen);
+});
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
+// 閉じるボタンをタップ
+closeButton.addEventListener('click', () => {
+    toggleMenu(false);
+});
 
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
+// 背景をタップ
+overlay.addEventListener('click', () => {
+    toggleMenu(false);
+});
 
-            if (ids.includes(href)) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    function updateActiveLink() {
-
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-
-        const currentPosition =
-            scrollPosition + windowHeight * 0.35;
-
-        const profileTop =
-            profileSection.getBoundingClientRect().top + scrollPosition;
-
-        const worksTop =
-            worksSection.getBoundingClientRect().top + scrollPosition;
-
-        const contactTop =
-            contactSection.getBoundingClientRect().top + scrollPosition;
-
-        const isBottom =
-            window.innerHeight + window.scrollY >=
-            document.documentElement.scrollHeight - 2;
-
-        if (isBottom) {
-            setActiveLinks(['#works', '#contact']);
-            return;
-        }
-
-        if (
-            currentPosition >= profileTop &&
-            currentPosition < worksTop
-        ) {
-            setActiveLinks(['#about', '#skills']);
-            return;
-        }
-
-        if (
-            currentPosition >= worksTop &&
-            currentPosition < contactTop
-        ) {
-
-            if (contactTop <= scrollPosition + windowHeight) {
-                setActiveLinks(['#works', '#contact']);
-            } else {
-                setActiveLinks(['#works']);
-            }
-
-            return;
-        }
-
-        if (currentPosition >= contactTop) {
-            setActiveLinks(['#contact']);
-            return;
-        }
-
-        setActiveLinks(['#home']);
-    }
-
-    window.addEventListener('scroll', updateActiveLink);
-
-    window.addEventListener('resize', updateActiveLink);
-
-    updateActiveLink();
-
-    const hamburger = document.querySelector('.hamburger-menu');
-    const wrapper = document.querySelector('.wrapper-hamburger');
-    const closeButton = document.querySelector('.close-btn');
-    const overlay = document.querySelector('.overlay');
-    const menuLinks = document.querySelectorAll('.sp-menu a');
-
-    function toggleMenu(isOpen) {
-        wrapper.classList.toggle('is-open', isOpen);
-        hamburger.setAttribute('aria-expanded', isOpen);
-        hamburger.setAttribute(
-            'aria-label',
-            isOpen ? 'メニューを閉じる' : 'メニューを開く'
-        );
-
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-    }
-
-    hamburger.addEventListener('click', () => {
-        const isOpen = wrapper.classList.contains('is-open');
-        toggleMenu(!isOpen);
-    });
-
-    closeButton.addEventListener('click', () => {
+// メニュー内のリンクをタップ
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
         toggleMenu(false);
     });
-
-    overlay.addEventListener('click', () => {
-        toggleMenu(false);
-    });
-
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            toggleMenu(false);
-        });
-    });
+});
 
 });
 
+
+// トップへ戻るボタン
 const backToTop = document.getElementById('back-to-top');
 
+// スクロール量に応じて表示・非表示を切り替える
 window.addEventListener('scroll', () => {
     if (window.scrollY > 200) {
         backToTop.classList.add('is-visible');
@@ -133,6 +89,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// クリックするとページの先頭へ戻る
 backToTop.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
