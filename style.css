@@ -83,14 +83,6 @@ nav{
     transform: scaleX(1);
 }
 
-nav:hover a.active:not(:hover)::after{
-    transform: scaleX(0);
-}
-
-nav:hover a.active:not(:hover){
-    color: #333;
-}
-
 #button-contact{
     background-color: #7156B2;
     color: #fff;
