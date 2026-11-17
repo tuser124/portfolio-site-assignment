@@ -858,3 +858,10 @@ nav{
 }
 
 }
+
+#about,
+#skills,
+#works,
+#contact {
+    scroll-margin-top: 70px;
+}
