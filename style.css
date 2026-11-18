@@ -55,6 +55,14 @@ body{
     gap: 30px;
 }
 
+#header-inner .header-menu-list{
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 nav{
     display: flex;
     gap: 25px;
@@ -256,22 +264,6 @@ nav{
     transform: translateX(2px);
 }
 
-.button-more{
-    transition: background-color 0.3s, color 0.3s;
-    margin-left: 0;
-    font-size: 0.8em;
-    background-color: transparent;
-    border: 1px solid #151B55;
-    color: #151B55;
-    border-radius: 21px;
-    padding: 0.5em 1.5em;
-    cursor: pointer;
-}
-.button-more:hover{
-    background-color: #151B55;
-    color: #fff;
-}
-
 .profile-layout{
     display: flex;
     align-items: stretch;
@@ -374,21 +366,6 @@ nav{
     margin-right: 5%;
 }
 
-.button-all-works{
-    display: inline-block;
-    text-decoration: none;
-    color: #151B55;
-    border: 1px solid #8B5CF6;
-    border-radius: 22px;
-    padding: 0.6em 1.5em;
-    font-size: 0.8em;
-}
-
-.button-all-works:hover{
-    background-color: #7156B2;
-    color: #fff;
-}
-
 .work-card{
     border: 1px solid #E8E5F0;
     border-radius: 14px;
@@ -396,6 +373,17 @@ nav{
     background-color: #fff;
     margin-left: 10%;
     margin-right: 10%;
+    cursor: pointer;
+}
+
+.work-modal-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
+    text-align: left;
     cursor: pointer;
 }
 
@@ -423,6 +411,59 @@ nav{
     line-height: 1.6;
 }
 
+.work-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+}
+
+.work-modal.is-open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.work-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.work-modal-content {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 35px;
+    background-color: #fff;
+    border-radius: 14px;
+    color: #151B55;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.work-modal-content h3 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.work-modal-content p {
+    line-height: 1.8;
+}
+
+.work-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 .contact{
     position: relative;
     margin: 30px 2%;
@@ -445,9 +486,9 @@ nav{
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    padding: 25px 8%;
+    padding: 25px 3%;
     min-height: 170px;
 
 }
@@ -467,7 +508,7 @@ nav{
 }
 
 .contact-form{
-    margin-right: 100px;
+    margin-right: 0;
     width: 50%;
 }
 
@@ -486,6 +527,11 @@ nav{
 .form-group{
     flex: 1;
     margin-bottom: 10px;
+}
+
+.contact-form .wpcf7-form-control-wrap {
+    display: block;
+    width: 100%;
 }
 
 .form-group label{
@@ -544,21 +590,33 @@ nav{
     background-color: #927BC7;
 }
 
+.contact-form .wpcf7-response-output {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
 .footer{
     padding: 25px 0 15px;
     background-color: rgba(0, 0, 0, 0.4)
 }
 
 .footer-inner{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     margin: 0 5%;
 }
 
 .footer-logo{
+    grid-column: 1;
+    justify-self: start;
     font-family: 'Cormorant Garamond', serif;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .footer-mark{
@@ -571,7 +629,8 @@ nav{
 }
 
 .footer-nav{
-    margin-right: 37%;
+    grid-column: 2;
+    margin-right: 0;
 }
 
 .footer-nav ul{
@@ -646,9 +705,6 @@ nav{
     display: none;
 }
 
-.wrapper-hamburger{
-    display: none;
-}
 
 @media (max-width: 768px) {
 
@@ -719,6 +775,15 @@ nav{
         transform: translateX(100%);
         visibility: hidden;
         transition: transform 0.3s ease, visibility 0.3s;
+        }
+
+        .sp-menu-list{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
         }
 
         .sp-menu a{
@@ -812,13 +877,17 @@ nav{
         margin-right: 0;
     }
 
-    .button-all-works {
-        max-width: 100%;
-    }
-
 .work-card {
     margin-left: 0;
     margin-right: 0;
+}
+
+.work-modal-content {
+    padding: 30px 20px;
+}
+
+.work-modal-content h3 {
+    font-size: 20px;
 }
 
 /* Contact */
@@ -841,9 +910,15 @@ nav{
 
 /* Footer */
 .footer-inner {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     margin: 0 5%;
+}
+
+.footer-logo {
+    align-self: center;
 }
 
 .footer-nav {

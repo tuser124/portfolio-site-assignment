@@ -79,23 +79,65 @@
                         <h2 class="section-title">Works</h2>
                         <p class="section-subtitle">制作実績</p>
                     </div>
-                    <a href="works.html" class="button-all-works">
-                        すべての作品を見る　→
-                    </a>
                 </div>
                 
                 <div class="works-list">
-                    <div class="work-card">
-                        <img src="<?php echo esc_url( get_template_directory_uri() . '/img/cafe.webp' ); ?>" alt="カフェのWebサイト">
-                            <div class="work-info">
-                                <h3 class="work-title">Cafè NEST</h3>
-                                <p class="work-description">
-                                架空のカフェを想定し、お店の雰囲気や魅力が伝わるWebサイトを制作しました。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    <?php
+                    $works_query = new WP_Query(array(
+                        'post_type' => 'works',
+                        'posts_per_page' => 3,
+                        'post_status' => 'publish',
+                    ));
+                    ?>
+
+                    <?php if ($works_query->have_posts()) : ?>
+                        <?php while ($works_query->have_posts()) : $works_query->the_post(); ?>
+
+
+<div class="work-card">
+
+    <button type="button" class="work-modal-trigger"
+        data-title="<?php echo esc_attr(get_the_title()); ?>"
+        data-description="<?php echo esc_attr(get_the_excerpt()); ?>"
+        data-technologies="<?php echo esc_attr(get_post_meta(get_the_ID(), 'works_technologies', true)); ?>"
+        data-period="<?php echo esc_attr(get_post_meta(get_the_ID(), 'works_period', true)); ?>">
+
+        <?php if (has_post_thumbnail()) : ?>
+            <?php echo get_the_post_thumbnail(get_the_ID(), 'large'); ?>
+        <?php endif; ?>
+
+        <div class="work-info">
+            <h3 class="work-title"><?php echo esc_html(get_the_title()); ?></h3>
+            <p class="work-description">
+                <?php echo esc_html(get_the_excerpt()); ?>
+            </p>
+        </div>
+
+    </button>
+
+</div>
+
+        <?php endwhile; ?>
+        <?php wp_reset_postdata(); ?>
+        <?php endif; ?>
+    </div>
+</section>
+
+<div class="work-modal" id="work-modal" aria-hidden="true">
+    <div class="work-modal-overlay"></div>
+
+    <div class="work-modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button type="button" class="work-modal-close" aria-label="閉じる">×</button>
+
+        <h3 id="modal-title"></h3>
+
+        <p id="modal-description"></p>
+
+        <p><strong>使用技術：</strong><span id="modal-technologies"></span></p>
+
+        <p><strong>制作期間：</strong><span id="modal-period"></span></p>
+    </div>
+</div>
             
             <section id="contact" class="contact">
                 <img class="contact-image" src="<?php echo esc_url( get_template_directory_uri() . '/img/contact.webp' ); ?>" alt="">
@@ -112,45 +154,7 @@
             </div>
         </div>
         <div class="contact-form">
-            <form>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">お名前</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="お名前"
-                            required
-                        >
-                    </div>
-
-                        <div class="form-group">
-                            <label for="email">メールアドレス</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="メールアドレス"
-                                required
-                             >
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">お問い合わせ内容</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            placeholder="お問い合わせ内容"
-                            required
-                        ></textarea>
-                    </div>
-
-                    <button type="submit" class="button-submit">
-                        送信する　→
-                    </button>
-            </form>
+            <?php echo do_shortcode('[contact-form-7 id="a19de12" title="ポートフォリオお問い合わせフォーム"]'); ?>
         </div>
     </div>
 </section>

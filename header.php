@@ -21,12 +21,16 @@
             <span class="logo-name">Reina Sato</span>
         </a>
         <div id="header-inner">
-            <nav>
-                <a href="#top">Home</a>
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#works">Works</a>
-                <a href="#contact">Contact</a>
+            <nav class="pc-nav" aria-label="メインメニュー">
+                <?php
+                wp_nav_menu(array(
+                'theme_location' => 'header-menu',
+                'container' => false,
+                'menu_id' => 'pc-header-menu',
+                'menu_class' => 'header-menu-list',
+                'fallback_cb' => false,
+            ));
+            ?>
             </nav>
             <a href="#contact" id="button-contact">お問い合わせ →</a>
         </div>
@@ -46,17 +50,20 @@
 
                 <div class="overlay"></div>
 
-                <nav id="sp-menu" class="sp-menu">
+                <nav id="sp-menu" class="sp-menu" aria-label="スマートフォンメニュー">
 
                     <button class="close-btn" type="button" aria-label="メニューを閉じる">
                         ×
                     </button>
-                    
-                    <a href="#top">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#works">Works</a>
-                    <a href="#contact">Contact</a>
+                    <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'header-menu',
+                        'container' => false,
+                        'menu_id' => 'sp-header-menu',
+                        'menu_class' => 'sp-menu-list',
+                        'fallback_cb' => false,
+                    ));
+                    ?>
                 </nav>
             </div>
         </header>

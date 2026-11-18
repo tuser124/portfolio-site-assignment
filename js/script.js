@@ -78,3 +78,46 @@ backToTop.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+const workModal = document.getElementById('work-modal');
+const workModalTriggers = document.querySelectorAll('.work-modal-trigger');
+const workModalClose = document.querySelector('.work-modal-close');
+const workModalOverlay = document.querySelector('.work-modal-overlay');
+
+let lastFocusedTrigger = null;
+
+function closeWorkModal() {
+    workModal.classList.remove('is-open');
+    workModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    if (lastFocusedTrigger) {
+        lastFocusedTrigger.focus();
+    }
+}
+
+workModalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+        lastFocusedTrigger = trigger;
+
+        document.getElementById('modal-title').textContent = trigger.dataset.title;
+        document.getElementById('modal-description').textContent = trigger.dataset.description;
+        document.getElementById('modal-technologies').textContent = trigger.dataset.technologies;
+        document.getElementById('modal-period').textContent = trigger.dataset.period;
+
+        workModal.classList.add('is-open');
+        workModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        workModalClose.focus();
+    });
+});
+
+workModalClose.addEventListener('click', closeWorkModal);
+workModalOverlay.addEventListener('click', closeWorkModal);
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && workModal.classList.contains('is-open')) {
+        closeWorkModal();
+    }
+});
